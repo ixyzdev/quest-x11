@@ -70,8 +70,8 @@ jobs:
       with:
         name: termux-companion packages
         path: |
-          ./shell-loader/build/outputs/companion/termux-x11-*-all.deb
-          ./shell-loader/build/outputs/companion/termux-x11-*-any.pkg.tar.xz
+          ./shell-loader/build/outputs/companion/*-all.deb
+          ./shell-loader/build/outputs/companion/*-any.pkg.tar.xz
 
     - name: Store unstripped libraries with debug symbols
       uses: actions/upload-artifact@v7
