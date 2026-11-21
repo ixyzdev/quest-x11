@@ -52,7 +52,7 @@ quest-x11 follows Termux:X11's `master`, merged in every week through a pull req
 
 ## Releases
 
-Every merge to `master` publishes a new version with the shared release action of [ixyzdev/gitops-public](https://github.com/ixyzdev/gitops-public). Each release carries the APK and companion packages built from its tag, and its source is the tagged commit of this repository.
+Every merge to `main` publishes a new version with the shared release action of [ixyzdev/gitops-public](https://github.com/ixyzdev/gitops-public). Each release carries the APK and companion packages built from its tag, and its source is the tagged commit of this repository.
 
 ## Credits and license
 
