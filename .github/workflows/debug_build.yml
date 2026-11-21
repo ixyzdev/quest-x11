@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '**.md'
       - 'img/**'
   pull_request:
     branches:
-      - master
+      - main
     paths-ignore:
       - '**.md'
       - 'img/**'
