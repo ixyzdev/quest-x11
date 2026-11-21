@@ -8,9 +8,12 @@ on:
 permissions:
   contents: write
 
+# Every merge waits its turn for its own release; without queue: max a newer push
+# replaces the run still pending.
 concurrency:
   group: release
   cancel-in-progress: false
+  queue: max
 
 jobs:
   release:
