@@ -59,6 +59,7 @@ public final class InputEventSender {
 
     /** Last Caps/Num/Scroll Lock state sent to the host, or -1 if none has been sent yet. */
     private int mLockKeysState = -1;
+    private static final boolean SYNC_LOCK_KEYS = false;
 
     public InputEventSender(MainActivity activity, InputStub injector) {
         if (injector == null)
@@ -105,6 +106,9 @@ public final class InputEventSender {
      * this only actually notifies the host when the state actually changed.
      */
     public void syncLockKeysState(int eventMetaState) {
+        // quest-x11: disabled until termux/termux-x11#1156 is fixed, it inverts the letter case.
+        if (!SYNC_LOCK_KEYS)
+            return;
         int state = (((eventMetaState & META_CAPS_LOCK_ON) != 0) ? 1 : 0)
                 | (((eventMetaState & META_NUM_LOCK_ON) != 0) ? 2 : 0)
                 | (((eventMetaState & META_SCROLL_LOCK_ON) != 0) ? 4 : 0);
