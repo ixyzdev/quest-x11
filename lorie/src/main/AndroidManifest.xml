@@ -25,6 +25,7 @@
             android:resizeableActivity="true"
             android:windowSoftInputMode="stateHidden|adjustNothing"
             android:exported="true">
+            <layout android:defaultWidth="1600dp" android:defaultHeight="960dp" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,7 +45,9 @@
             android:configChanges="fontScale|orientation|screenSize|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|screenLayout|touchscreen|uiMode|smallestScreenSize|density"
             android:resizeableActivity="true"
             android:windowSoftInputMode="stateHidden|adjustNothing"
-            android:exported="false" />
+            android:exported="false">
+            <layout android:defaultWidth="1600dp" android:defaultHeight="960dp" />
+        </activity>
         <activity
             android:theme="@style/Theme.AppCompat.DayNight"
             android:excludeFromRecents="true"
