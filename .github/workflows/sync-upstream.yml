@@ -74,7 +74,7 @@ jobs:
         if gh pr view "$BRANCH" --json state --jq .state | grep -q OPEN; then
           gh pr edit "$BRANCH" --body "$body"
         else
-          gh pr create --base master --head "$BRANCH" --title "chore: sync with termux-x11" --body "$body"
+          gh pr create --base main --head "$BRANCH" --title "chore: sync with termux-x11" --body "$body"
         fi
         # Events made with GITHUB_TOKEN start no workflows, so the build is started by hand.
         gh workflow run debug_build.yml --ref "$BRANCH"
@@ -93,16 +93,16 @@ jobs:
         ~~~sh
         git fetch origin
         git fetch $UPSTREAM.git master
-        git switch -C $BRANCH origin/master
+        git switch -C $BRANCH origin/main
         git merge --no-commit FETCH_HEAD
         git rm -f --ignore-unmatch -- $DROPPED
         # Resolve the other conflicts, if any, then:
         git commit --no-edit
         git push --force -u origin $BRANCH
-        gh pr create --base master --title "chore: sync with termux-x11" --body "Merges Termux:X11 master up to termux/termux-x11@$HEAD."
+        gh pr create --base main --title "chore: sync with termux-x11" --body "Merges Termux:X11 master up to termux/termux-x11@$HEAD."
         ~~~
 
-        The next sync closes this issue once master holds that commit.
+        The next sync closes this issue once main holds that commit.
         EOF
         )
         number=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
@@ -119,5 +119,5 @@ jobs:
       run: |
         number=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
         if [ -n "$number" ]; then
-          gh issue close "$number" --comment "master holds Termux:X11 master up to termux/termux-x11@$HEAD."
+          gh issue close "$number" --comment "main holds Termux:X11 master up to termux/termux-x11@$HEAD."
         fi
