@@ -39,3 +39,6 @@ github.properties
 
 *.cxx
 app/.cxx/*
+
+# Agent worktrees
+.worktrees/
