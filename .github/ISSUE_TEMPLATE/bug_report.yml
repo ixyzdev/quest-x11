@@ -6,9 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        This is a bug tracker of the official Termux:X11. 
-        Please do not report issues of third-party software there, but ask in [Termux Packages GitHub Discussions](https://github.com/termux/termux-packages/discussions) or [Community Social Media](https://wiki.termux.com/wiki/Community) instead. 
-        Also you can ask questions in [Discord](https://discord.gg/termux-641256914684084234).
+        This is the bug tracker of quest-x11, a modified Termux:X11 for Meta Quest headsets. It is not the official Termux:X11: do not report quest-x11 bugs to Termux.
+        If the bug also happens with the official Termux:X11, report it to [Termux:X11](https://github.com/termux/termux-x11/issues) instead; its fix reaches quest-x11 through the weekly sync.
+        Please do not report issues of third-party software here.
         Use search to check whether your issue has been already reported and perhaps solved.
 
         Android versions below 8.x are not supported.
@@ -20,7 +20,7 @@ body:
         Be patient, do not expect that issue could get resolved immediately.
         
         ### Logs
-        If you need to obtain logs from the `com.termux.x11` application,
+        If you need to obtain logs from the `dev.ixyz.questx11` application,
         set the `TERMUX_X11_DEBUG` environment variable to 1, like this:
         `TERMUX_X11_DEBUG=1 termux-x11 :0`
 
