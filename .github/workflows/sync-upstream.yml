@@ -1,0 +1,125 @@
+name: Sync with Termux:X11
+
+on:
+  schedule:
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: write
+
+concurrency: sync-upstream
+
+jobs:
+  sync:
+    name: "Sync"
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      UPSTREAM: https://github.com/termux/termux-x11
+      BRANCH: sync/upstream
+      ISSUE_TITLE: Sync with Termux:X11 needs a manual merge
+      # Deleted on purpose in quest-x11: upstream changes to them are dropped.
+      DROPPED: .github/dependabot.yml .github/workflows/update-wrapper.yml
+      # GITHUB_TOKEN cannot push commits that change workflows. A deploy key with write access,
+      # stored as the SYNC_DEPLOY_KEY secret, can; without it those syncs are left to a person.
+      HAS_DEPLOY_KEY: ${{ secrets.SYNC_DEPLOY_KEY != '' }}
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v7
+      with:
+        fetch-depth: 0
+        ssh-key: ${{ secrets.SYNC_DEPLOY_KEY }}
+
+    - name: Merge Termux:X11 master
+      id: merge
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git fetch --no-tags "$UPSTREAM.git" master
+        echo "upstream=$(git rev-parse --short FETCH_HEAD)" >> "$GITHUB_OUTPUT"
+        echo "base=$(git rev-parse --short "$(git merge-base HEAD FETCH_HEAD)")" >> "$GITHUB_OUTPUT"
+        if git merge-base --is-ancestor FETCH_HEAD HEAD; then
+          echo "result=current" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        if [ "$HAS_DEPLOY_KEY" != true ] && [ -n "$(git log --format=%h HEAD..FETCH_HEAD -- .github/workflows)" ]; then
+          echo "result=manual" >> "$GITHUB_OUTPUT"
+          echo "reason=Termux:X11 changed its workflows, and this repository has no SYNC_DEPLOY_KEY secret to push them." >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        git switch -C "$BRANCH"
+        if ! git merge --no-ff --no-edit -m "chore: sync with termux-x11" FETCH_HEAD; then
+          for file in $DROPPED; do
+            if git ls-files -u -- "$file" | grep -q .; then
+              git rm -q -- "$file"
+            fi
+          done
+          if git ls-files -u | grep -q .; then
+            echo "result=manual" >> "$GITHUB_OUTPUT"
+            echo "reason=The merge conflicts in $(git diff --name-only --diff-filter=U | xargs)." >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit --no-edit
+        fi
+        echo "result=merged" >> "$GITHUB_OUTPUT"
+
+    - name: Open the pull request
+      if: steps.merge.outputs.result == 'merged'
+      env:
+        BASE: ${{ steps.merge.outputs.base }}
+        HEAD: ${{ steps.merge.outputs.upstream }}
+      run: |
+        git push --force origin "$BRANCH"
+        body="Merges Termux:X11 master up to termux/termux-x11@$HEAD. Its changes since the last sync: $UPSTREAM/compare/$BASE...$HEAD"
+        if gh pr view "$BRANCH" --json state --jq .state | grep -q OPEN; then
+          gh pr edit "$BRANCH" --body "$body"
+        else
+          gh pr create --base master --head "$BRANCH" --title "chore: sync with termux-x11" --body "$body"
+        fi
+        # Events made with GITHUB_TOKEN start no workflows, so the build is started by hand.
+        gh workflow run debug_build.yml --ref "$BRANCH"
+
+    - name: Ask for a manual merge
+      if: steps.merge.outputs.result == 'manual'
+      env:
+        REASON: ${{ steps.merge.outputs.reason }}
+        HEAD: ${{ steps.merge.outputs.upstream }}
+      run: |
+        body=$(cat <<EOF
+        $REASON
+
+        Merge Termux:X11 master (termux/termux-x11@$HEAD) from a clone that can push to this repository:
+
+        ~~~sh
+        git fetch origin
+        git fetch $UPSTREAM.git master
+        git switch -C $BRANCH origin/master
+        git merge FETCH_HEAD
+        # Keep $DROPPED deleted: git rm <file> on their conflicts.
+        git push --force -u origin $BRANCH
+        gh pr create --base master --title "chore: sync with termux-x11" --body "Merges Termux:X11 master up to termux/termux-x11@$HEAD."
+        ~~~
+
+        The next sync closes this issue once master holds that commit.
+        EOF
+        )
+        number=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
+        if [ -n "$number" ]; then
+          gh issue comment "$number" --body "$body"
+        else
+          gh issue create --title "$ISSUE_TITLE" --body "$body"
+        fi
+
+    - name: Close the manual merge issue
+      if: steps.merge.outputs.result == 'current'
+      env:
+        HEAD: ${{ steps.merge.outputs.upstream }}
+      run: |
+        number=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
+        if [ -n "$number" ]; then
+          gh issue close "$number" --comment "master holds Termux:X11 master up to termux/termux-x11@$HEAD."
+        fi
