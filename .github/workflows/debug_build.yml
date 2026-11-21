@@ -95,8 +95,8 @@ jobs:
         files: |
           ./lorie-app/build/outputs/apk/standalone/release/termux-x11-universal-release.apk
           ./lorie-app/build/outputs/apk/sharedUid/release/termux-x11-universal-sharedUid-release.apk
-          ./shell-loader/build/outputs/companion/*-all.deb
-          ./shell-loader/build/outputs/companion/*-any.pkg.tar.xz
+          ./shell-loader/build/outputs/companion/termux-x11-*-all.deb
+          ./shell-loader/build/outputs/companion/termux-x11-*-any.pkg.tar.xz
 
   dependabot-merge:
     name: "Dependabot merge"
