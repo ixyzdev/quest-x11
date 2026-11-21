@@ -1,0 +1,85 @@
+name: CD / Release
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+    steps:
+    - id: release
+      uses: ixyzdev/gitops-public/actions/release@main
+
+  # Tags pushed with GITHUB_TOKEN start no workflows, so the assets are built here.
+  assets:
+    name: "Attach the APK"
+    needs: release
+    if: needs.release.outputs.version != ''
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.release.outputs.version }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - name: Clone the release tag
+      uses: actions/checkout@v7
+      with:
+        ref: v${{ needs.release.outputs.version }}
+        fetch-depth: 1
+
+    - name: Java setup
+      uses: actions/setup-java@v6
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Restore cache
+      uses: actions/cache@v6
+      with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            .git/modules
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '.gitmodules') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+    - name: Fetch submodules
+      run: git submodule update --init --recursive --jobs 8 --depth 1
+
+    # The app and the companion packages take their version from this line. It is replaced
+    # here and not in the repository, so syncs with Termux:X11 never conflict on it.
+    - name: Set the version
+      run: |
+        base=$(sed -n 's/^ *def version = "\([^"]*\)"$/\1/p' lorie/version.gradle)
+        test -n "$base"
+        echo "BASE_VERSION=$base" >> "$GITHUB_ENV"
+        sed -i "s/^\( *def version = \)\"[^\"]*\"$/\1\"$VERSION\"/" lorie/version.gradle
+        grep -q "def version = \"$VERSION\"" lorie/version.gradle
+
+    - name: Build
+      run: ./gradlew assembleRelease :shell-loader:buildCompanionPackage
+
+    - name: Attach to the release
+      run: |
+        mkdir dist
+        cp lorie-app/build/outputs/apk/standalone/release/*.apk "dist/quest-x11-$VERSION-universal.apk"
+        cp lorie-app/build/outputs/apk/sharedUid/release/*.apk "dist/quest-x11-$VERSION-universal-sharedUid.apk"
+        cp shell-loader/build/outputs/companion/*-all.deb "dist/quest-x11-$VERSION-all.deb"
+        cp shell-loader/build/outputs/companion/*-any.pkg.tar.xz "dist/quest-x11-$VERSION-any.pkg.tar.xz"
+        gh release upload "v$VERSION" dist/*
+        notes=$(gh release view "v$VERSION" --json body --jq .body)
+        gh release edit "v$VERSION" --notes "$(printf '%s\n\n%s\n\n%s\n' "$notes" \
+          "Based on Termux:X11 $BASE_VERSION. To install it, follow the [README](https://github.com/$GITHUB_REPOSITORY#install)." \
+          "Source code (GPL-3.0): https://github.com/$GITHUB_REPOSITORY/tree/v$VERSION")"
