@@ -52,19 +52,15 @@ jobs:
           exit 0
         fi
         git switch -C "$BRANCH"
-        if ! git merge --no-ff --no-edit -m "chore: sync with termux-x11" FETCH_HEAD; then
-          for file in $DROPPED; do
-            if git ls-files -u -- "$file" | grep -q .; then
-              git rm -q -- "$file"
-            fi
-          done
-          if git ls-files -u | grep -q .; then
-            echo "result=manual" >> "$GITHUB_OUTPUT"
-            echo "reason=The merge conflicts in $(git diff --name-only --diff-filter=U | xargs)." >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git commit --no-edit
+        git merge --no-ff --no-commit -m "chore: sync with termux-x11" FETCH_HEAD || true
+        # A clean merge brings the dropped paths back as well as a conflicting one does.
+        git rm -q -f --ignore-unmatch -- $DROPPED
+        if git ls-files -u | grep -q .; then
+          echo "result=manual" >> "$GITHUB_OUTPUT"
+          echo "reason=The merge conflicts in $(git diff --name-only --diff-filter=U | xargs)." >> "$GITHUB_OUTPUT"
+          exit 0
         fi
+        git commit --no-edit
         echo "result=merged" >> "$GITHUB_OUTPUT"
 
     - name: Open the pull request
@@ -98,8 +94,10 @@ jobs:
         git fetch origin
         git fetch $UPSTREAM.git master
         git switch -C $BRANCH origin/master
-        git merge FETCH_HEAD
-        # Keep $DROPPED deleted: git rm <file> on their conflicts.
+        git merge --no-commit FETCH_HEAD
+        git rm -f --ignore-unmatch -- $DROPPED
+        # Resolve the other conflicts, if any, then:
+        git commit --no-edit
         git push --force -u origin $BRANCH
         gh pr create --base master --title "chore: sync with termux-x11" --body "Merges Termux:X11 master up to termux/termux-x11@$HEAD."
         ~~~
