@@ -31,6 +31,14 @@ quest-x11 installs under its own package, `dev.ixyz.questx11`, next to the offic
 
 To go back to the official app, install `termux-x11-nightly` again with `pkg install termux-x11-nightly`. Everything else about using the X server, from starting sessions to the preferences, is in [Termux:X11's documentation](../README.md).
 
+Those docs name the app by the official package, `com.termux.x11`. For quest-x11 change only the package to `dev.ixyz.questx11`; class and action names stay as they are:
+
+```sh
+am start --user 0 -n dev.ixyz.questx11/com.termux.x11.MainActivity
+am broadcast -a com.termux.x11.ACTION_STOP -p dev.ixyz.questx11
+export CLASSPATH=$(/system/bin/pm path dev.ixyz.questx11 | cut -d: -f2)
+```
+
 ## Changes from Termux:X11
 
 quest-x11 follows Termux:X11's `master`, merged in every week through a pull request. These are its own changes, as GPL-3.0 section 5a asks of a modified version:
