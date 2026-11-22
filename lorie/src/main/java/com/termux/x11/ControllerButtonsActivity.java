@@ -67,6 +67,7 @@ public class ControllerButtonsActivity extends AppCompatActivity {
     private long deadline;
     private boolean waiting;
     private boolean swallowingTouch;
+    private int swallowedKey = KeyEvent.KEYCODE_UNKNOWN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +102,17 @@ public class ControllerButtonsActivity extends AppCompatActivity {
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         ControllerButtons.record(ControllerButtons.describe(event));
+        if (event.getKeyCode() == swallowedKey && event.getAction() == KeyEvent.ACTION_UP) {
+            swallowedKey = KeyEvent.KEYCODE_UNKNOWN;
+            return true;
+        }
         if (!waiting)
             return super.dispatchKeyEvent(event);
 
-        if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0)
+        if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
+            swallowedKey = event.getKeyCode();
             captured(ControllerButtons.inputOf(event));
+        }
         return true;
     }
 
