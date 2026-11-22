@@ -1,3 +1,4 @@
 <resources>
     <item name="desktop_panel" type="id" />
+    <item name="menu_panel" type="id" />
 </resources>
