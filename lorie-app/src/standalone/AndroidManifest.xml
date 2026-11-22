@@ -23,7 +23,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.oculus.intent.category.VR" />
-                <category android:name="com.oculus.intent.category.VR_HOME_LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
