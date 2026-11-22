@@ -8,6 +8,7 @@ import static android.os.Build.VERSION.SDK_INT;
 import static android.system.Os.getuid;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -252,6 +253,23 @@ public class LoriePreferences extends AppCompatActivity implements PreferenceFra
                 action.accept(p);
         }
 
+        private Intent immersiveDesktopIntent() {
+            return new Intent(Intent.ACTION_MAIN)
+                    .setClassName(requireContext(), "com.termux.x11.app.ImmersiveActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+
+        private void openImmersiveDesktop() {
+            Intent immersiveDesktop = immersiveDesktopIntent();
+            startActivity(immersiveDesktop);
+            ActivityManager activityManager = requireContext().getSystemService(ActivityManager.class);
+            for (ActivityManager.AppTask task : activityManager.getAppTasks()) {
+                boolean isImmersiveDesktopTask = immersiveDesktop.getComponent().equals(task.getTaskInfo().baseActivity);
+                if (!isImmersiveDesktopTask)
+                    task.finishAndRemoveTask();
+            }
+        }
+
         @SuppressLint("DiscouragedApi")
         int findId(String name) {
             //noinspection DataFlowIssue
@@ -293,6 +311,7 @@ public class LoriePreferences extends AppCompatActivity implements PreferenceFra
 
             with("showAdditionalKbd", p -> p.setLayoutResource(R.layout.preference));
             with("version", p -> p.setSummary(BuildConfig.VERSION_NAME));
+            with("immersiveDesktop", p -> p.setVisible(immersiveDesktopIntent().resolveActivity(requireContext().getPackageManager()) != null));
 
             setSummary("displayStretch", R.string.lorie_pref_summary_requiresExactOrCustom);
             setSummary("adjustResolution", R.string.lorie_pref_summary_requiresExactOrCustom);
@@ -466,6 +485,11 @@ public class LoriePreferences extends AppCompatActivity implements PreferenceFra
 
             if ("controllerButtons".contentEquals(p.getKey())) {
                 startActivity(new Intent(requireContext(), ControllerButtonsActivity.class));
+                return true;
+            }
+
+            if ("immersiveDesktop".contentEquals(p.getKey())) {
+                openImmersiveDesktop();
                 return true;
             }
 
