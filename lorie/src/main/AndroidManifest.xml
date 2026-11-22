@@ -65,6 +65,13 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight"
+            android:excludeFromRecents="true"
+            android:name=".ControllerButtonsActivity"
+            android:taskAffinity=".LoriePreferences"
+            android:resizeableActivity="true"
+            android:exported="false" />
 	    <meta-data android:name="android.allow_multiple_resumed_activities" android:value="true" />
 
         <service android:name=".utils.KeyInterceptor"
