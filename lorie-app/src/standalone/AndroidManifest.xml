@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:horizonos="http://schemas.horizonos/sdk">
+    <horizonos:uses-horizonos-sdk
+        horizonos:minSdkVersion="69"
+        horizonos:targetSdkVersion="69" />
+    <uses-feature android:name="android.hardware.vr.headtracking" android:required="true" />
+    <uses-feature android:name="oculus.software.handtracking" android:required="false" />
+    <uses-feature android:name="com.oculus.feature.PASSTHROUGH" android:required="false" />
+    <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
+    <application>
+        <activity
+            android:name="com.termux.x11.MainActivity"
+            android:allowEmbedded="true" />
+        <activity
+            android:name="com.termux.x11.LoriePreferences"
+            android:allowEmbedded="true" />
+        <activity
+            android:name="com.termux.x11.app.ImmersiveActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.oculus.intent.category.VR" />
+                <category android:name="com.oculus.intent.category.VR_HOME_LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

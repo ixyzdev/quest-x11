@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6202020"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="24dp">
+    <Switch
+        android:id="@+id/passthrough_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/immersive_show_room"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+    <Button
+        android:id="@+id/desktop_window_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/immersive_open_desktop_window"
+        android:textSize="24sp" />
+</LinearLayout>
