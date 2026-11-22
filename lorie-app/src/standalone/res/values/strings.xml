@@ -1,3 +1,4 @@
 <resources>
     <string name="immersive_show_room">Show the room</string>
+    <string name="immersive_open_desktop_window">Open as a 2D window</string>
 </resources>
