@@ -196,8 +196,30 @@ public class ControllerButtonsActivity extends AppCompatActivity {
             row.setAllCaps(false);
             row.setText(describe(button));
             row.setOnClickListener(v -> waitFor(button));
+            row.setOnLongClickListener(v -> { forget(button); return true; });
             buttonList.addView(row);
         }
+    }
+
+    private void forget(String button) {
+        String[] choices = { getString(R.string.controller_buttons_clear), getString(R.string.controller_buttons_mark_nothing) };
+        new AlertDialog.Builder(this)
+                .setTitle(button)
+                .setItems(choices, (dialog, which) -> {
+                    String input = ControllerButtons.buttonInput(this, button);
+                    ControllerButtons.setButtonInput(this, button, which == 0 ? null : NOTHING);
+                    if (input != null && !usedByAnotherButton(input))
+                        ControllerButtons.unmap(this, input);
+                    showButtons();
+                })
+                .show();
+    }
+
+    private boolean usedByAnotherButton(String input) {
+        for (String button : BUTTONS)
+            if (input.equals(ControllerButtons.buttonInput(this, button)))
+                return true;
+        return false;
     }
 
     private String describe(String button) {
