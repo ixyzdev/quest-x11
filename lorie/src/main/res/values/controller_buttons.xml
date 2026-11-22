@@ -1,21 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lorie_pref_controllerButtons">Controller buttons</string>
-    <string name="lorie_pref_controllerButtons_summary">Choose what each controller button does in the desktop</string>
-    <string name="controller_buttons_intro">Tap a button in the list, then press that button on the controller within 10 seconds. What the app receives is saved next to it, and then you choose what it does in the desktop. Long-press a row to clear it.</string>
-    <string name="controller_buttons_waiting">%s: press it now…</string>
-    <string name="controller_buttons_not_captured">%s: tap to map</string>
-    <string name="controller_buttons_touch">%s: arrives as a tap, like the trigger, so it stays a click</string>
-    <string name="controller_buttons_nothing">%s: nothing arrives, the system keeps it</string>
-    <string name="controller_buttons_input">%1$s: %2$s → %3$s</string>
-    <string name="controller_buttons_no_action">no action</string>
-    <string name="controller_buttons_clear">Clear</string>
-    <string name="controller_buttons_mark_nothing">Nothing arrives from this button</string>
+    <string name="lorie_pref_controllerButtons_summary">Choose what each button does in the desktop</string>
+
+    <string name="controller_buttons_back">Back</string>
+    <string name="controller_buttons_mode_2d">2D window</string>
+    <string name="controller_buttons_mode_immersive">Immersive scene</string>
+    <string name="controller_buttons_presets">Presets</string>
+    <string name="controller_buttons_coming_soon">Coming soon</string>
+
+    <string name="controller_buttons_selected_back"><![CDATA[<b><font color="#ECECEE">Back</font></b> is selected. B and Y send the same input, so they share one action.]]></string>
+    <string name="controller_buttons_selected_stick"><![CDATA[<b><font color="#ECECEE">%s</font></b> is selected. Both sticks send the same input, so they share one action.]]></string>
+    <string name="controller_buttons_selected_sticks"><![CDATA[<b><font color="#ECECEE">Sticks</font></b> are selected. Up, down, left and right are separate inputs, each shared by both sticks. Pick one in the list.]]></string>
+    <string name="controller_buttons_reason_click"><![CDATA[<b><font color="#ECECEE">%s</font></b> arrives as a click, like the trigger.]]></string>
+    <string name="controller_buttons_reason_menu"><![CDATA[<b><font color="#ECECEE">Menu</font></b>: the system keeps it, nothing arrives.]]></string>
+    <string name="controller_buttons_reason_meta"><![CDATA[<b><font color="#ECECEE">Meta button</font></b>: belongs to the system.]]></string>
+
+    <string name="controller_buttons_left">Left</string>
+    <string name="controller_buttons_right">Right</string>
+    <string name="controller_buttons_left_stick">Left stick</string>
+    <string name="controller_buttons_right_stick">Right stick</string>
+    <string name="controller_buttons_menu">Menu</string>
+    <string name="controller_buttons_meta">Meta button</string>
+    <string name="controller_buttons_trigger">Trigger · Click</string>
+    <string name="controller_buttons_grip">Grip · Grab window</string>
+
+    <string name="controller_buttons_legend_mapped">Mapped</string>
+    <string name="controller_buttons_legend_default">Mappable, default</string>
+    <string name="controller_buttons_legend_shared">Same input as another button</string>
+    <string name="controller_buttons_legend_fixed">Fixed or arrives as a click</string>
+    <string name="controller_buttons_legend_system">System keeps it</string>
+
+    <string name="controller_buttons_mappable">Mappable here</string>
+    <string name="controller_buttons_input_count">%d inputs</string>
+    <string name="controller_buttons_sent_back">B · Y</string>
+    <string name="controller_buttons_sent_stick">Left stick · Right stick</string>
+    <string name="controller_buttons_default_value">Default: %s</string>
+    <string name="controller_buttons_ignored">Ignored</string>
+
+    <string name="controller_buttons_test">Test a button</string>
+    <string name="controller_buttons_diagnostics_off">Diagnostics · Input log off</string>
+    <string name="controller_buttons_diagnostics_on">Diagnostics · Input log on</string>
+    <string name="controller_buttons_reset">Reset all to default</string>
+    <string name="controller_buttons_reset_title">Reset all to default?</string>
+    <string name="controller_buttons_reset_message">Every input goes back to its default action.</string>
+    <string name="controller_buttons_reset_confirm">Reset</string>
+    <string name="controller_buttons_cancel">Cancel</string>
+
+    <string-array name="controller_buttons_input_names">
+        <item>Back</item>
+        <item>Stick up</item>
+        <item>Stick down</item>
+        <item>Stick left</item>
+        <item>Stick right</item>
+    </string-array>
+    <string-array name="controller_buttons_input_defaults">
+        <item>Quest keyboard</item>
+        <item>scroll up</item>
+        <item>scroll down</item>
+        <item>scroll left</item>
+        <item>scroll right</item>
+    </string-array>
+    <string-array name="controller_buttons_input_default_subs">
+        <item>Show or hide the Quest keyboard</item>
+        <item>Scroll up</item>
+        <item>Scroll down</item>
+        <item>Scroll left</item>
+        <item>Scroll right</item>
+    </string-array>
+
+    <string name="controller_buttons_sent_by_back">Sent by B and Y</string>
+    <string name="controller_buttons_sent_by_stick">Sent by the left and right stick</string>
+    <string name="controller_buttons_will_do_back">B and Y will do</string>
+    <string name="controller_buttons_will_do_stick">Both sticks will do</string>
+    <string name="controller_buttons_use_default">Use default</string>
+    <string name="controller_buttons_done">Done</string>
+    <string name="controller_buttons_note_back">In the 2D window, B and Y reach the app as the same Back key. Whatever you pick here, both buttons do it.</string>
+    <string name="controller_buttons_note_stick">In the 2D window, both sticks reach the app as the same scroll. Whatever you pick here, both sticks do it.</string>
+    <string name="controller_buttons_how_it_fires">How it fires</string>
+    <string name="controller_buttons_fires_back">The action is pressed with the button and released with it. Holding it does not repeat.</string>
+    <string name="controller_buttons_fires_stick">Fires about 4 times a second while you hold the stick</string>
+
+    <string name="controller_buttons_group_basics">Basics</string>
+    <string name="controller_buttons_group_mouse">Mouse</string>
+    <string name="controller_buttons_group_shortcuts">Shortcuts</string>
+    <string name="controller_buttons_group_app">quest-x11</string>
+    <string name="controller_buttons_group_combination">Your own combination</string>
+    <string name="controller_buttons_default">Default</string>
+    <string name="controller_buttons_do_nothing">Do nothing</string>
+    <string name="controller_buttons_ignored_back">B and Y are ignored</string>
+    <string name="controller_buttons_ignored_stick">%s is ignored on both sticks</string>
+
+    <string-array name="controller_buttons_actions">
+        <item>click:right</item>
+        <item>click:middle</item>
+        <item>click:left</item>
+        <item>keys:alt+tab</item>
+        <item>keys:super</item>
+        <item>keys:esc</item>
+        <item>keys:return</item>
+        <item>keys:ctrl+c</item>
+        <item>keys:ctrl+v</item>
+        <item>keys:ctrl+z</item>
+        <item>keys:ctrl+tab</item>
+        <item>keys:ctrl+shift+tab</item>
+        <item>keys:pageup</item>
+        <item>keys:pagedown</item>
+        <item>keys:ctrl+plus</item>
+        <item>app:toggle soft keyboard</item>
+        <item>app:toggle additional key bar</item>
+        <item>app:toggle fullscreen</item>
+        <item>app:open preferences</item>
+    </string-array>
+    <string-array name="controller_buttons_action_groups">
+        <item>@string/controller_buttons_group_mouse</item>
+        <item>@string/controller_buttons_group_mouse</item>
+        <item>@string/controller_buttons_group_mouse</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_shortcuts</item>
+        <item>@string/controller_buttons_group_app</item>
+        <item>@string/controller_buttons_group_app</item>
+        <item>@string/controller_buttons_group_app</item>
+        <item>@string/controller_buttons_group_app</item>
+    </string-array>
+    <string-array name="controller_buttons_action_labels">
+        <item>Right click</item>
+        <item>Middle click</item>
+        <item>Left click</item>
+        <item>Switch window</item>
+        <item>Applications menu</item>
+        <item>Escape</item>
+        <item>Enter</item>
+        <item>Copy</item>
+        <item>Paste</item>
+        <item>Undo</item>
+        <item>Next tab</item>
+        <item>Previous tab</item>
+        <item>Page up</item>
+        <item>Page down</item>
+        <item>Zoom in</item>
+        <item>Quest keyboard</item>
+        <item>Extra keys bar</item>
+        <item>Fullscreen</item>
+        <item>Preferences</item>
+    </string-array>
+    <string-array name="controller_buttons_action_subs">
+        <item>At the cursor</item>
+        <item>Paste selection, open in tab</item>
+        <item>Same as the trigger</item>
+        <item>Alt + Tab</item>
+        <item>Super</item>
+        <item>Esc</item>
+        <item>Enter</item>
+        <item>Ctrl + C</item>
+        <item>Ctrl + V</item>
+        <item>Ctrl + Z</item>
+        <item>Ctrl + Tab</item>
+        <item>Ctrl + Shift + Tab</item>
+        <item>Page Up</item>
+        <item>Page Down</item>
+        <item>Ctrl + plus</item>
+        <item>Show or hide</item>
+        <item>Esc, Ctrl, Alt, arrows</item>
+        <item>On or off</item>
+        <item>Open quest-x11 settings</item>
+    </string-array>
+
+    <string name="controller_buttons_hold">Hold</string>
+    <string name="controller_buttons_then_press">Then press</string>
+    <string-array name="controller_buttons_modifiers">
+        <item>ctrl</item>
+        <item>alt</item>
+        <item>shift</item>
+        <item>super</item>
+    </string-array>
+    <string-array name="controller_buttons_keys">
+        <item>tab</item>
+        <item>esc</item>
+        <item>return</item>
+        <item>space</item>
+        <item>backspace</item>
+        <item>delete</item>
+        <item>home</item>
+        <item>end</item>
+        <item>pageup</item>
+        <item>pagedown</item>
+        <item>up</item>
+        <item>down</item>
+        <item>left</item>
+        <item>right</item>
+    </string-array>
+    <string-array name="controller_buttons_key_caps">
+        <item>Tab</item>
+        <item>Esc</item>
+        <item>Enter</item>
+        <item>Space</item>
+        <item>Bksp</item>
+        <item>Del</item>
+        <item>Home</item>
+        <item>End</item>
+        <item>PgUp</item>
+        <item>PgDn</item>
+        <item>↑</item>
+        <item>↓</item>
+        <item>←</item>
+        <item>→</item>
+    </string-array>
+    <string name="controller_buttons_letter">Letter or number…</string>
+    <string name="controller_buttons_function_keys">F1 – F12…</string>
+    <string name="controller_buttons_type_it">Type it instead…</string>
+    <string name="controller_buttons_type_hint">Keys joined with +, for example ctrl+shift+t</string>
+    <string name="controller_buttons_unknown_key">Unknown key “%s”. Try a name like tab, esc, pagedown or f5.</string>
+    <string name="controller_buttons_combination">Combination</string>
+    <string name="controller_buttons_pick_key">Pick a key</string>
+    <string name="controller_buttons_use_combination">Use this combination</string>
+
+    <string name="controller_buttons_test_subtitle">See what quest-x11 receives when you press it</string>
+    <string name="controller_buttons_seconds">seconds</string>
+    <string name="controller_buttons_press_now">Press any controller button now</string>
+    <string name="controller_buttons_press_hint">Hold the controller in your hand. The trigger only clicks here.</string>
+    <string name="controller_buttons_received">Received: %s</string>
+    <string name="controller_buttons_received_back"><![CDATA[B and Y both send Back, so they share one action. It does <b><font color="#ECECEE">%s</font></b> now.]]></string>
+    <string name="controller_buttons_received_stick"><![CDATA[Both sticks send %1$s, so they share one action. It does <b><font color="#ECECEE">%2$s</font></b> now.]]></string>
+    <string name="controller_buttons_click">Click</string>
+    <string name="controller_buttons_received_click">A, X and the triggers arrive as a click. They always stay a click.</string>
+    <string name="controller_buttons_other_input">Another input</string>
+    <string name="controller_buttons_received_other">It is not a controller input that can be mapped here.</string>
+    <string name="controller_buttons_test_another">Test another</string>
+    <string name="controller_buttons_change_action">Change action</string>
+    <string name="controller_buttons_nothing_arrived">Nothing arrived in 10 seconds</string>
+    <string name="controller_buttons_reason_asleep">The controller may be asleep, or the headset switched to hand tracking. Pick the controller up and try again.</string>
+    <string name="controller_buttons_reason_system">In the 2D window the system keeps Menu, the grips and the stick presses. Those never reach quest-x11.</string>
+    <string name="controller_buttons_back_to_buttons">Back to buttons</string>
+    <string name="controller_buttons_try_again">Try again</string>
+
+    <string name="controller_buttons_diagnostics">Diagnostics</string>
+    <string name="controller_buttons_diagnostics_subtitle">Input log, newest first. Also in logcat with the QuestX11Input tag.</string>
     <string name="controller_buttons_record">Record controller input in the desktop</string>
-    <string name="controller_buttons_log">Input log (newest first, also in logcat with the QuestX11Input tag)</string>
     <string name="controller_buttons_clear_log">Clear log</string>
-    <string name="controller_buttons_close">Close</string>
-    <string name="controller_buttons_keys">Key or combination…</string>
-    <string name="controller_buttons_keys_help">Key names joined with +, for example ctrl+c, alt+tab, super, esc, f5, up, pagedown.</string>
-    <string name="controller_buttons_unknown_keys">Unknown key in \"%s\"</string>
 </resources>

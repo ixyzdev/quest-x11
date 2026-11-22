@@ -42,6 +42,7 @@ android {
     packagingOptions.jniLibs.useLegacyPackaging false
     buildFeatures.aidl true
     buildFeatures.buildConfig true
+    testOptions.unitTests.includeAndroidResources true
 }
 
 dependencies {
@@ -51,6 +52,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0'
     implementation 'androidx.preference:preference:1.2.1'
     compileOnly project(':shell-loader:stub')
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
 }
 afterEvaluate {
     tasks.register("generatePrefs") {

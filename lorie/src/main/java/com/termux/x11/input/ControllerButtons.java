@@ -26,12 +26,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class ControllerButtons {
-    public static final String[] ACTIONS = {
-            "keys:", "click:left", "click:middle", "click:right",
-            "app:toggle soft keyboard", "app:toggle additional key bar", "app:open preferences", "app:toggle fullscreen",
-            "ignore",
-    };
-
     private static final String TAG = "QuestX11Input";
     private static final String PREFERENCES = "controllerButtons";
     private static final String BUTTON_INPUTS = "controllerButtonInputs";
@@ -127,14 +121,29 @@ public class ControllerButtons {
 
     public static List<Integer> keyCodes(String combination) {
         List<Integer> keys = new ArrayList<>();
-        for (String name : combination.trim().split("\\s*\\+\\s*")) {
-            String upper = KEY_ALIASES.getOrDefault(name.toLowerCase(Locale.ROOT), name.toUpperCase(Locale.ROOT));
-            int key = KeyEvent.keyCodeFromString("KEYCODE_" + upper);
+        for (String name : keyNames(combination)) {
+            int key = keyCode(name);
             if (key == KeyEvent.KEYCODE_UNKNOWN)
                 return null;
             keys.add(key);
         }
         return keys;
+    }
+
+    public static String unknownKey(String combination) {
+        for (String name : keyNames(combination))
+            if (keyCode(name) == KeyEvent.KEYCODE_UNKNOWN)
+                return name;
+        return null;
+    }
+
+    public static String[] keyNames(String combination) {
+        return combination.trim().split("\\s*\\+\\s*");
+    }
+
+    private static int keyCode(String name) {
+        String upper = KEY_ALIASES.getOrDefault(name.toLowerCase(Locale.ROOT), name.toUpperCase(Locale.ROOT));
+        return upper.isEmpty() ? KeyEvent.KEYCODE_UNKNOWN : KeyEvent.keyCodeFromString("KEYCODE_" + upper);
     }
 
     public static String inputOf(KeyEvent event) {
@@ -240,5 +249,14 @@ public class ControllerButtons {
 
     public static void unmap(Context context, String input) {
         preferences(context).edit().remove(input).apply();
+    }
+
+    public static void unmapAll(Context context) {
+        SharedPreferences preferences = preferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        for (String key : preferences.getAll().keySet())
+            if (!key.equals(RECORDING))
+                editor.remove(key);
+        editor.apply();
     }
 }

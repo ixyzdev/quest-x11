@@ -52,7 +52,7 @@ jobs:
       run: git submodule update --init --recursive --jobs 8 --depth 1
 
     - name: Build
-      run: ./gradlew assembleDebug assembleRelease
+      run: ./gradlew assembleDebug assembleRelease :lorie:testDebugUnitTest
     - name: Store app-universal-debug
       uses: actions/upload-artifact@v7
       with:

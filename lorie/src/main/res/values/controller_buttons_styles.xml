@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ControllerButtonsTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/controller_buttons_bg</item>
+        <item name="android:statusBarColor">@color/controller_buttons_bg</item>
+        <item name="android:navigationBarColor">@color/controller_buttons_bg</item>
+        <item name="android:textColorPrimary">@color/controller_buttons_text</item>
+        <item name="android:textColorSecondary">@color/controller_buttons_text_2</item>
+        <item name="android:textColorHint">@color/controller_buttons_text_3</item>
+        <item name="colorPrimary">@color/controller_buttons_surface</item>
+        <item name="colorPrimaryDark">@color/controller_buttons_bg</item>
+        <item name="colorAccent">@color/controller_buttons_accent</item>
+    </style>
+
+    <style name="ControllerButtons" />
+
+    <style name="ControllerButtons.Text">
+        <item name="android:textColor">@color/controller_buttons_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ControllerButtons.Text.Secondary">
+        <item name="android:textColor">@color/controller_buttons_text_2</item>
+    </style>
+
+    <style name="ControllerButtons.Text.Caption">
+        <item name="android:textColor">@color/controller_buttons_text_2</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ControllerButtons.Text.Title">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="ControllerButtons.Text.Section">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="ControllerButtons.Text.Group">
+        <item name="android:textColor">@color/controller_buttons_text_2</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <style name="ControllerButtons.Header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">104dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+    </style>
+
+    <style name="ControllerButtons.BackButton">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:padding">17dp</item>
+        <item name="android:background">@drawable/controller_buttons_pill_filled</item>
+        <item name="android:src">@drawable/ic_controller_back</item>
+        <item name="android:tint">@color/controller_buttons_text</item>
+        <item name="android:contentDescription">@string/controller_buttons_back</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ControllerButtons.Panel">
+        <item name="android:background">@drawable/controller_buttons_panel</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ControllerButtons.Pill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:paddingStart">22dp</item>
+        <item name="android:paddingEnd">22dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/controller_buttons_text</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:drawableTint">@color/controller_buttons_text</item>
+        <item name="android:background">@drawable/controller_buttons_pill_filled</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ControllerButtons.Pill.Outlined">
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:background">@drawable/controller_buttons_pill_outlined</item>
+    </style>
+
+    <style name="ControllerButtons.Pill.Unavailable">
+        <item name="android:textColor">@color/controller_buttons_text_3</item>
+        <item name="android:drawableTint">@color/controller_buttons_text_3</item>
+        <item name="android:background">@drawable/controller_buttons_pill_outlined</item>
+    </style>
+
+    <style name="ControllerButtons.Pill.Primary">
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/controller_buttons_primary_text</item>
+        <item name="android:background">@drawable/controller_buttons_pill_primary</item>
+    </style>
+
+    <style name="ControllerButtons.Pill.Quiet">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/controller_buttons_text_2</item>
+        <item name="android:background">@drawable/controller_buttons_pill_quiet</item>
+    </style>
+
+    <style name="ControllerButtons.Pill.Dashed">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/controller_buttons_text_2</item>
+        <item name="android:drawableTint">@color/controller_buttons_text_2</item>
+        <item name="android:background">@drawable/controller_buttons_pill_dashed</item>
+    </style>
+
+    <style name="ControllerButtons.Locked">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/controller_buttons_text</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:drawableTint">@color/controller_buttons_text</item>
+        <item name="android:background">@drawable/controller_buttons_locked</item>
+    </style>
+
+    <style name="ControllerButtons.Legend" parent="ControllerButtons.Text.Caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">22dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <style name="ControllerButtons.Option">
+        <item name="android:background">@drawable/controller_buttons_option</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ControllerButtons.Key">
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/controller_buttons_text</item>
+        <item name="android:background">@drawable/controller_buttons_key</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ControllerButtons.Key.Outlined">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:background">@drawable/controller_buttons_key_outlined</item>
+    </style>
+
+    <style name="ControllerButtons.Key.Outlined.Unavailable">
+        <item name="android:textColor">@color/controller_buttons_text_3</item>
+    </style>
+
+    <style name="ControllerButtons.DrawnButton">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ControllerButtons.Badge">
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:background">@drawable/controller_buttons_badge</item>
+        <item name="android:src">@drawable/ic_controller_link</item>
+        <item name="android:tint">@color/controller_buttons_accent_text</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+</resources>

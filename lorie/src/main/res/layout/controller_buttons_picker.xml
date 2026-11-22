@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/controller_buttons_bg"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/ControllerButtons.Header">
+
+        <ImageView
+            android:id="@+id/controller_buttons_close"
+            style="@style/ControllerButtons.BackButton" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/controller_buttons_title"
+                style="@style/ControllerButtons.Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/controller_buttons_subtitle"
+                style="@style/ControllerButtons.Text.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/controller_buttons_will_do"
+                style="@style/ControllerButtons.Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/controller_buttons_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:accessibilityLiveRegion="polite"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textColor="@color/controller_buttons_accent_text"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/controller_buttons_use_default"
+            style="@style/ControllerButtons.Pill.Outlined"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/controller_buttons_use_default" />
+
+        <TextView
+            android:id="@+id/controller_buttons_done"
+            style="@style/ControllerButtons.Pill.Primary"
+            android:text="@string/controller_buttons_done" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ControllerButtons.Panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="130dp"
+                            android:layout_height="143dp">
+
+                            <include
+                                android:id="@+id/controller_buttons_left_drawing"
+                                layout="@layout/controller_buttons_left" />
+                        </FrameLayout>
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/controller_buttons_left" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="130dp"
+                            android:layout_height="143dp">
+
+                            <include
+                                android:id="@+id/controller_buttons_right_drawing"
+                                layout="@layout/controller_buttons_right" />
+                        </FrameLayout>
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/controller_buttons_right" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/controller_buttons_note"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="12dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_controller_link"
+                        android:tint="@color/controller_buttons_accent_text" />
+
+                    <TextView
+                        android:id="@+id/controller_buttons_note"
+                        style="@style/ControllerButtons.Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:lineSpacingMultiplier="1.2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ControllerButtons.Panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    style="@style/ControllerButtons.Text.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/controller_buttons_how_it_fires" />
+
+                <TextView
+                    android:id="@+id/controller_buttons_fires"
+                    style="@style/ControllerButtons.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingMultiplier="1.2" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="32dp">
+
+                <LinearLayout
+                    android:id="@+id/controller_buttons_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    style="@style/ControllerButtons.Text.Group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/controller_buttons_group_combination" />
+
+                <LinearLayout
+                    style="@style/ControllerButtons.Panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/controller_buttons_modifiers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Secondary"
+                            android:layout_width="96dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/controller_buttons_hold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Secondary"
+                            android:layout_width="96dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:paddingTop="18dp"
+                            android:text="@string/controller_buttons_then_press" />
+
+                        <LinearLayout
+                            android:id="@+id/controller_buttons_keys"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal"
+                        android:paddingStart="112dp">
+
+                        <TextView
+                            android:id="@+id/controller_buttons_letter"
+                            style="@style/ControllerButtons.Key.Outlined.Unavailable"
+                            android:text="@string/controller_buttons_letter" />
+
+                        <TextView
+                            android:id="@+id/controller_buttons_function_keys"
+                            style="@style/ControllerButtons.Key.Outlined.Unavailable"
+                            android:text="@string/controller_buttons_function_keys" />
+
+                        <TextView
+                            android:id="@+id/controller_buttons_type_it"
+                            style="@style/ControllerButtons.Key.Outlined"
+                            android:text="@string/controller_buttons_type_it" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/controller_buttons_typed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:orientation="vertical"
+                        android:paddingStart="112dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:labelFor="@+id/controller_buttons_typed_keys"
+                            android:text="@string/controller_buttons_type_hint" />
+
+                        <EditText
+                            android:id="@+id/controller_buttons_typed_keys"
+                            android:layout_width="420dp"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/controller_buttons_field"
+                            android:fontFamily="sans-serif-medium"
+                            android:importantForAutofill="no"
+                            android:inputType="text|textNoSuggestions"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:textColor="@color/controller_buttons_text"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/controller_buttons_typed_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:accessibilityLiveRegion="assertive"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/controller_buttons_error_text"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/controller_buttons_inset"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="20dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="16dp">
+
+                        <TextView
+                            style="@style/ControllerButtons.Text.Secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/controller_buttons_combination" />
+
+                        <TextView
+                            android:id="@+id/controller_buttons_combination"
+                            style="@style/ControllerButtons.Text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:id="@+id/controller_buttons_use_combination"
+                            style="@style/ControllerButtons.Pill.Primary"
+                            android:paddingStart="24dp"
+                            android:paddingEnd="24dp"
+                            android:text="@string/controller_buttons_use_combination" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
