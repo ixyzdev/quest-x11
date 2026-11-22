@@ -15,7 +15,7 @@ git fetch origin "$branch"
 git checkout --force --detach FETCH_HEAD
 git submodule update --init --recursive --jobs 8 --depth 1
 
-./gradlew --no-daemon -Pandroid.injected.build.abi=arm64-v8a :lorie-app:assembleStandaloneDebug
+./gradlew --no-daemon -Pandroid.injected.build.abi=arm64-v8a -Pandroid.injected.testOnly=false :lorie-app:assembleStandaloneDebug
 
 commit="$(git rev-parse --short HEAD)"
 cp lorie-app/build/intermediates/apk/standalone/debug/termux-x11-universal-debug.apk \
