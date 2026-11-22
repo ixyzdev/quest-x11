@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="300dp"
+    android:height="330dp"
+    android:viewportWidth="300"
+    android:viewportHeight="330">
+    <path android:pathData="M34,118a116,116 0 1,0 232,0a116,116 0 1,0 -232,0z" android:fillColor="@color/controller_buttons_surface_2" />
+    <path android:pathData="M150,150h0a55,55 0 0 1 55,55v70a55,55 0 0 1 -55,55h0a55,55 0 0 1 -55,-55v-70a55,55 0 0 1 55,-55z" android:fillColor="@color/controller_buttons_surface_2" />
+</vector>

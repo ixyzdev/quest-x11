@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="78dp"
+    android:height="78dp"
+    android:viewportWidth="78"
+    android:viewportHeight="78">
+    <path android:pathData="M22,39a17,17 0 1,0 34,0a17,17 0 1,0 -34,0z" android:fillColor="#2C3A55" android:strokeColor="@color/controller_buttons_on_accent" android:strokeWidth="3" />
+    <path android:pathData="M33,12l6,-6 6,6" android:strokeColor="@color/controller_buttons_on_accent" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000" />
+    <path android:pathData="M33,66l6,6 6,-6" android:strokeColor="@color/controller_buttons_on_accent" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000" />
+    <path android:pathData="M12,33l-6,6 6,6" android:strokeColor="@color/controller_buttons_on_accent" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000" />
+    <path android:pathData="M66,33l6,6 -6,6" android:strokeColor="@color/controller_buttons_on_accent" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000" />
+</vector>

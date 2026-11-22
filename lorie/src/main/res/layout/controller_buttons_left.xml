@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="330dp">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="330dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/controller_body" />
+
+    <ImageView
+        android:id="@+id/controller_left_stick"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="49dp"
+        android:background="@drawable/controller_button_default"
+        android:clickable="true"
+        android:contentDescription="@string/controller_buttons_left_stick"
+        android:focusable="true"
+        android:scaleType="center"
+        android:src="@drawable/controller_stick"
+        android:tag="Left stick" />
+
+    <TextView
+        android:id="@+id/controller_y"
+        style="@style/ControllerButtons.DrawnButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/controller_button_default"
+        android:tag="Y"
+        android:text="Y" />
+
+    <TextView
+        android:id="@+id/controller_x"
+        style="@style/ControllerButtons.DrawnButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="105dp"
+        android:background="@drawable/controller_button_fixed"
+        android:tag="X"
+        android:text="X"
+        android:textColor="@color/controller_buttons_text" />
+
+    <ImageView
+        android:id="@+id/controller_menu"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="153dp"
+        android:background="@drawable/controller_button_system"
+        android:clickable="true"
+        android:contentDescription="@string/controller_buttons_menu"
+        android:focusable="true"
+        android:padding="21dp"
+        android:src="@drawable/ic_controller_menu"
+        android:tag="Menu"
+        android:tint="@color/controller_buttons_text_3" />
+
+    <ImageView
+        android:id="@+id/controller_left_stick_badge"
+        style="@style/ControllerButtons.Badge"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="46dp" />
+
+    <ImageView
+        android:id="@+id/controller_y_badge"
+        style="@style/ControllerButtons.Badge"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="36dp" />
+</FrameLayout>
