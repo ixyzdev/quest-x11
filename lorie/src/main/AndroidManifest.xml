@@ -25,6 +25,9 @@
             android:resizeableActivity="true"
             android:windowSoftInputMode="stateHidden|adjustNothing"
             android:exported="true">
+            <layout android:defaultWidth="1280dp" android:defaultHeight="768dp" />
+            <meta-data android:name="com.oculus.vrshell.supports_free_resizing" android:value="true" />
+            <meta-data android:name="com.oculus.vrshell.free_resizing_limits" android:value="320,3840,500,2160" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,7 +47,11 @@
             android:configChanges="fontScale|orientation|screenSize|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|screenLayout|touchscreen|uiMode|smallestScreenSize|density"
             android:resizeableActivity="true"
             android:windowSoftInputMode="stateHidden|adjustNothing"
-            android:exported="false" />
+            android:exported="false">
+            <layout android:defaultWidth="1280dp" android:defaultHeight="768dp" />
+            <meta-data android:name="com.oculus.vrshell.supports_free_resizing" android:value="true" />
+            <meta-data android:name="com.oculus.vrshell.free_resizing_limits" android:value="320,3840,500,2160" />
+        </activity>
         <activity
             android:theme="@style/Theme.AppCompat.DayNight"
             android:excludeFromRecents="true"
