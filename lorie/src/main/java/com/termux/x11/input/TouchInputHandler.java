@@ -104,6 +104,7 @@ public class TouchInputHandler {
     private InputStrategyInterface mInputStrategy;
     private final InputEventSender mInjector;
     private final MainActivity mActivity;
+    private final ControllerButtons mControllerButtons;
     private final InputManager.InputDeviceListener mInputDeviceListener;
     private final DisplayMetrics mMetrics = new DisplayMetrics();
     private final float[] mappedPoint = new float[2];
@@ -191,6 +192,7 @@ public class TouchInputHandler {
         mRenderData = renderData != null ? renderData :new RenderData();
         mInjector = injector;
         mActivity = activity;
+        mControllerButtons = new ControllerButtons(activity);
         if (mDisplayManager == null) {
             mDisplayManager = (DisplayManager) mActivity.getSystemService(Context.DISPLAY_SERVICE);
             mDisplayRotation = mDisplayManager.getDisplay(Display.DEFAULT_DISPLAY).getRotation() % 4;
@@ -311,6 +313,9 @@ public class TouchInputHandler {
 
     public boolean handleTouchEvent(View view0, View view, MotionEvent event) {
         if (ignoreGamepadEvents && (event.isFromSource(InputDevice.SOURCE_GAMEPAD) || event.isFromSource(InputDevice.SOURCE_JOYSTICK)))
+            return true;
+
+        if (mTouchpadHandler != null && mControllerButtons.onMotion(event))
             return true;
 
         if (event.getDeviceId() >= 0) {
@@ -964,6 +969,9 @@ public class TouchInputHandler {
 
         if (e.getDeviceId() >= 0)
             mInjector.releaseStuckModifiers(e.getMetaState());
+
+        if (mControllerButtons.onKey(e))
+            return true;
 
         if (isMediaSessionKey(k)) {
             if (mediaKeysAction == noAction)

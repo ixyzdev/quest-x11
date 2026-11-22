@@ -464,6 +464,11 @@ public class LoriePreferences extends AppCompatActivity implements PreferenceFra
                 }
             }
 
+            if ("controllerButtons".contentEquals(p.getKey())) {
+                startActivity(new Intent(requireContext(), ControllerButtonsActivity.class));
+                return true;
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && "requestNotificationPermission".contentEquals(p.getKey())) {
                 ActivityCompat.requestPermissions(requireActivity(), new String[]{POST_NOTIFICATIONS}, 101);
                 return true;
