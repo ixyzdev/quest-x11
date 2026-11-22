@@ -12,6 +12,9 @@
             android:name="com.termux.x11.MainActivity"
             android:allowEmbedded="true" />
         <activity
+            android:name="com.termux.x11.LoriePreferences"
+            android:allowEmbedded="true" />
+        <activity
             android:name="com.termux.x11.app.ImmersiveActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:launchMode="singleTask"
