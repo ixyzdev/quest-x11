@@ -51,8 +51,8 @@ android {
         keyPassword 'xrj45yWGLbsO7W0v'
     }
 
-    compileOptions.sourceCompatibility JavaVersion.VERSION_1_9
-    compileOptions.targetCompatibility JavaVersion.VERSION_1_9
+    compileOptions.sourceCompatibility JavaVersion.VERSION_17
+    compileOptions.targetCompatibility JavaVersion.VERSION_17
     buildTypes.configureEach {
         signingConfig signingConfigs.debug
         minifyEnabled true
@@ -81,4 +81,8 @@ tasks.matching { it.name == 'assembleDebug' }.configureEach { dependsOn ':shell-
 
 dependencies {
     implementation project(':lorie')
+    standaloneImplementation 'com.meta.spatial:meta-spatial-sdk:0.15.0'
+    standaloneImplementation 'com.meta.spatial:meta-spatial-sdk-toolkit:0.15.0'
+    standaloneImplementation 'com.meta.spatial:meta-spatial-sdk-vr:0.15.0'
+    standaloneImplementation 'com.meta.spatial:meta-spatial-sdk-isdk:0.15.0'
 }
