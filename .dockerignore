@@ -1,0 +1,13 @@
+.git
+.github
+.gradle
+.idea
+.worktrees
+**/build
+**/.cxx
+lorie/src/main/cpp
+*.apk
+*.iml
+local.properties
+.env
+.env.*
