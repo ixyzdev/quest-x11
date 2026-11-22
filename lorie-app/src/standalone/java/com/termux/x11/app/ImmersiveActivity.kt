@@ -37,6 +37,7 @@ class ImmersiveActivity : AppSystemActivity() {
 
     override fun onSceneReady() {
         super.onSceneReady()
+        scene.enablePassthrough(true)
         scene.setReferenceSpace(ReferenceSpace.LOCAL_FLOOR)
         Entity.create(
             listOf(
