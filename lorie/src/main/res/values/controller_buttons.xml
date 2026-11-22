@@ -2,15 +2,14 @@
 <resources>
     <string name="lorie_pref_controllerButtons">Controller buttons</string>
     <string name="lorie_pref_controllerButtons_summary">Choose what each controller button does in the desktop</string>
-    <string name="controller_buttons_intro">Press a controller button while this window has focus. The input it sends shows below; then assign an action to it. Buttons that never show up here are kept by the system and cannot be mapped.</string>
-    <string name="controller_buttons_nothing_captured">No button pressed yet</string>
-    <string name="controller_buttons_captured">Last input: %s</string>
-    <string name="controller_buttons_assign">Assign an action to the last input</string>
+    <string name="controller_buttons_intro">Tap a button in the list, then press that button on the controller within 10 seconds. What the app receives is saved next to it, and then you choose what it does in the desktop.</string>
+    <string name="controller_buttons_waiting">%s: press it now…</string>
+    <string name="controller_buttons_not_captured">%s: tap to map</string>
+    <string name="controller_buttons_touch">%s: arrives as a tap, like the trigger, so it stays a click</string>
+    <string name="controller_buttons_nothing">%s: nothing arrives, the system keeps it</string>
+    <string name="controller_buttons_input">%1$s: %2$s → %3$s</string>
+    <string name="controller_buttons_no_action">no action</string>
     <string name="controller_buttons_record">Record controller input in the desktop</string>
-    <string name="controller_buttons_mappings">Mappings (tap one to remove it)</string>
-    <string name="controller_buttons_no_mappings">No mappings yet</string>
-    <string name="controller_buttons_mapping">%1$s → %2$s</string>
-    <string name="controller_buttons_remove">Remove this mapping?</string>
     <string name="controller_buttons_log">Input log (newest first, also in logcat with the QuestX11Input tag)</string>
     <string name="controller_buttons_clear_log">Clear log</string>
     <string name="controller_buttons_close">Close</string>

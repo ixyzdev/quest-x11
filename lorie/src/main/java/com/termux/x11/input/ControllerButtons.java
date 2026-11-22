@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class ControllerButtons {
     public static final String[] ACTIONS = {
@@ -35,6 +34,7 @@ public class ControllerButtons {
 
     private static final String TAG = "QuestX11Input";
     private static final String PREFERENCES = "controllerButtons";
+    private static final String BUTTON_INPUTS = "controllerButtonInputs";
     private static final String RECORDING = "recording";
     private static final int LOG_SIZE = 200;
     private static final long SCROLL_GAP_MS = 250;
@@ -222,12 +222,16 @@ public class ControllerButtons {
         preferences(context).edit().putBoolean(RECORDING, recording).apply();
     }
 
-    public static Map<String, String> mappings(Context context) {
-        Map<String, String> mappings = new TreeMap<>();
-        for (Map.Entry<String, ?> entry : preferences(context).getAll().entrySet())
-            if (entry.getValue() instanceof String)
-                mappings.put(entry.getKey(), (String) entry.getValue());
-        return mappings;
+    public static String action(Context context, String input) {
+        return preferences(context).getString(input, null);
+    }
+
+    public static String buttonInput(Context context, String button) {
+        return context.getSharedPreferences(BUTTON_INPUTS, Context.MODE_PRIVATE).getString(button, null);
+    }
+
+    public static void setButtonInput(Context context, String button, String input) {
+        context.getSharedPreferences(BUTTON_INPUTS, Context.MODE_PRIVATE).edit().putString(button, input).apply();
     }
 
     public static void map(Context context, String input, String action) {
